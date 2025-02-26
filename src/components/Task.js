@@ -37,7 +37,7 @@ class Task extends React.Component {
                 </h3>
                 <p>{task.task_description}</p>
                 <p>{task.email}</p>
-                <b>{task.isCritical ? 'Критично :(' : 'Не критично :)'}</b>
+                <b>{task.priority==="high" ? 'Критично :(' : 'Не критично :)'}</b>
 
                 {/* Условный рендеринг формы редактирования */}
                 {this.state.editForm && <AddTask task={task} onAdd={this.props.onEdit} />}

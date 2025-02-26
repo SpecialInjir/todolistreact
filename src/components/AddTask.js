@@ -8,8 +8,8 @@ class AddTask extends React.Component{
             task_name: "",
             task_description: "",
             email: "",
-            endDate:  new Date(),
-            isCritical: false
+            endDate:  Date.now(),
+            priority: ""
         }
     }
     render()
@@ -19,9 +19,17 @@ class AddTask extends React.Component{
                <input placeholder="Название задачи"  onChange={(e)=>this.setState({task_name: e.target.value})}/>
                <input placeholder="Описание" onChange={(e)=>this.setState({task_description: e.target.value})}/>
                <textarea placeholder="Почта" onChange={(e)=>this.setState({email: e.target.value})}></textarea>
-               <input placeholder="Дата окончания" onChange={(e)=>this.setState({endDate: e.target.value})}/>
+               <input type="date" placeholder="Дата окончания" onChange={(e)=>this.setState({endDate: e.target.value})}/>
                <label htmlFor="isCritical">Критичная ли задача?</label>
-               <input  type="checkbox" id="isCritical" onChange={(e)=>this.setState({isCritical: e.target.checked})}/>
+               {/* <input  type="checkbox" id="isCritical" onChange={(e)=>this.setState({isCritical: e.target.checked})}/> */}
+               <select className="priority"
+                value={this.state.priority}
+                onChange={(e)=>this.setState({priority: e.target.value})}
+                >
+                <option value="low">Низкий</option>
+                <option value="normal">Средний</option>
+                <option value="high">Высокий</option>
+                </select>
                <button
                     type="button"
                     onClick={() => {
@@ -31,7 +39,7 @@ class AddTask extends React.Component{
                             task_description: this.state.task_description,
                             email: this.state.email,
                             endDate: this.state.endDate,
-                            isCritical: this.state.isCritical,
+                            priority: this.state.priority,
                         }
                         if(this.props.task){
                             this.taskAdd.id = this.props.task.id
